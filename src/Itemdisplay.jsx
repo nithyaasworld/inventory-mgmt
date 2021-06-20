@@ -1,14 +1,15 @@
 import Divider from "@material-ui/core/Divider";
 import { databaseRef } from "./firebase-config";
 
-export default function Itemdisplay({ list }) {
+export default function Itemdisplay({ list, catName }) {
   const onDelete = (e) => {
     let doc_id = e.target.parentElement.getAttribute("doc");
-    databaseRef.collection("mobiles")
+    databaseRef.collection(catName)
       .doc(doc_id)
       .delete()
       .then(() => {
         console.log("Document successfully deleted!");
+        window.location = '/categories';
       })
       .catch((error) => {
         console.error("Error removing document: ", error);

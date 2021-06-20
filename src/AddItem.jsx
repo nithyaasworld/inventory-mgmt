@@ -1,15 +1,15 @@
 import { useRef } from "react";
 import { databaseRef } from "./firebase-config";
 
-export default function AddItem(){
+export default function AddItem({selectedCat}){
     let nameRef = useRef();
     let descriptionRef = useRef();
     let priceRef = useRef();
     let quantityRef = useRef();
     let imageURLRef = useRef();
-    
+
     const onSubmit = () => {
-        databaseRef.collection("mobiles").add({
+        databaseRef.collection(selectedCat.toLowerCase()).add({
             name: nameRef.current.value,
             description: descriptionRef.current.value, 
             price: priceRef.current.value, 

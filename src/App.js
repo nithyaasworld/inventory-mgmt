@@ -3,6 +3,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Category from './Category';
 import AddItem from './AddItem';
+import { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,6 +11,8 @@ import {
 } from "react-router-dom";
 
 function App() {
+  let [selectedCat, setSelectedCat] = useState("Mobiles");
+
   return (
       <Router>
       <div className="App">
@@ -18,10 +21,10 @@ function App() {
             <Signup />
           </Route>
           <Route path="/categories">
-            <Category />
+            <Category selectedCat={selectedCat} setSelectedCat={setSelectedCat} />
           </Route>
           <Route path="/add-item">
-            <AddItem />
+            <AddItem selectedCat={selectedCat} />
           </Route>
           <Route path="/">
             <Login />

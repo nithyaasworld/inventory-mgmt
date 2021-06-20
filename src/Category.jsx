@@ -4,13 +4,20 @@ import Itemdisplay from "./Itemdisplay";
 import { databaseRef } from "./firebase-config";
 import { Link } from 'react-router-dom';
 
-export default function Category() {
+export default function Category({selectedCat, setSelectedCat}) {
   let categories = ["Mobiles", "Laptops", "Appliances"];
-  let [selectedCat, setSelectedCat] = useState("");
+  // let [selectedCat, setSelectedCat] = useState("Mobiles");
   let [mobileList, setMobileList] = useState([]);
   let [laptopList, setLaptopList] = useState([]);
   let [applianceList, setApplianceList] = useState([]);
   let [currList, setCurrList] = useState([]);
+
+  // useEffect(()=>{
+  //   if(selectedCat === ""){
+  //       // setCurrList(mobileList);
+  //       setSelectedCat("Mobiles");
+  //   }
+  // }, [mobileList]);
 
   useEffect(()=>{
     if(selectedCat === "Mobiles"){
@@ -20,12 +27,7 @@ export default function Category() {
     }else if(selectedCat === "Appliances"){
         setCurrList(applianceList);
     }
-  },[selectedCat]);
-  useEffect(()=>{
-    if(selectedCat === ""){
-        setCurrList(mobileList);
-    }
-  }, [mobileList]);
+  },[mobileList, selectedCat]);
 
   useEffect(() => {
     //Getting Mobile List from DB
@@ -107,7 +109,7 @@ export default function Category() {
         ))}
       </ul>
       <Link className="add-an-item" to="/add-item"><button className="add-an-item-button">Add an item for this category</button></Link>
-      <Itemdisplay list={currList} />
+      <Itemdisplay list={currList} catName={selectedCat.toLowerCase()} />
     </div>
   );
 }
