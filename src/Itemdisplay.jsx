@@ -1,4 +1,7 @@
+import Divider  from "@material-ui/core/Divider";
+
 export default function Itemdisplay({ list }) {
+  console.log('list is: ', list);
   return (
     <div className="item-display-container">
       <div className="row-item">
@@ -16,6 +19,7 @@ export default function Itemdisplay({ list }) {
           <p className="item-quantity">{item.quantity}</p>
           <img src={item.image} alt="item" className="item-img-url"></img>
           <button className="delete-button">Delete</button>
+          <Divider/>
         </div>
       ))}
     </div>

@@ -32,7 +32,10 @@
   opacity: 0.4;
 }
 .category-container{
-  background-color: beige;
+  background-color: #480ca8;
+  color: white;
+  font-size: 1em;
+  align-self: flex-start;
 }
 .category-list{
   display: flex;
@@ -45,9 +48,9 @@
   cursor: pointer;
 }
 .item-display-container{
-  background-color: burlywood;
   display: flex;
   flex-direction: column;
+  color: black;
 }
 .row-item{
   display: flex;
@@ -55,9 +58,12 @@
   padding: 1em;
   height: 10em;
   gap: 2em;
+  background-color: #deaaff;
+  border: 1px solid black;
 }
 .item-name{
   width: 10em;
+  text-align: center;
 }
 .item-desc{
   width: 20em;
@@ -65,27 +71,48 @@
 }
 .item-price{
   width: 5em;
+  text-align: center;
+}
+.item-quantity{
+  text-align: center;
 }
 .item-img-url{
   width: 15em;
   object-fit: cover;
+  text-align: center;
 }
 .delete-button{
-  align-self: center;
+  align-self: flex-start;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  border: none;
+  background-color: #ef476f;
+  color: hsl(0, 0%, 100%, 0.8);
 }
 .table-header{
-  height: 1em;
+  height: 3em;
   padding: 1em;
-  background-color: rgb(95, 78, 55);
-  color: hsl(0, 0%, 100%, 0.7);
+  background-color: hsl(263, 87%, 35%, 0.6);
+  color: white;
+  border-radius: 5px;
+  text-align: center;
 }
 .item-quantity{
   width: 5em;
 }
-.add-item-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.add-an-item{
+  text-decoration: none;
+}
+.add-an-item button {
+  color: #551A8B;
+}
+.add-an-item-button{
+  padding: 1em;
+  border-radius: 5px;
+  border: none;
+  margin: 1em;
+  cursor: pointer;
 }
 .signup-container{
   max-width: 300px;

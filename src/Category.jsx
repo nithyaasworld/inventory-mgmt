@@ -105,7 +105,7 @@ export default function Category() {
           </li>
         ))}
       </ul>
-      <button className="add-an-item"><Link to="/add-item">Add an item for this category</Link></button>
+      <Link className="add-an-item" to="/add-item"><button className="add-an-item-button">Add an item for this category</button></Link>
       <Itemdisplay list={currList} />
     </div>
   );
