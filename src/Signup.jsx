@@ -1,48 +1,60 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { firebaseAuth } from "./firebase-config";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 export default function SignUp() {
-    let [email, setEmail] = useState("");
-    let [password, setPassword] = useState("");
-    let [confirmPassword, setConfirmaPassword] = useState("");
-    // let [disabled, setDisabled] = useState(true);
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [confirmPassword, setConfirmaPassword] = useState("");
+  let [error, setError] = useState("");
 
-    useEffect(()=>{
-        console.log(email);
-    }, [email]);
-  
-    const signupFunction = (email , password) => {
-        console.log('signupFunction is called');
-        console.log(email);
-        console.log(password);
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    let user = userCredential.user;
-                    console.log(user);
-                    })
-                .catch((error) => {
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                console.log({errorCode}, {errorMessage});
-                })
-            }
+  const signupFunction = () => {
+    setError("");
+    console.log("signupFunction is called");
+    console.log("email is: ", email);
+    console.log(password);
+    firebaseAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        let user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        setError(`${errorCode}: ${errorMessage}`);
+      });
+  };
   return (
     <div className="signup-container">
-    <h1>Sign Up</h1>
+      <h1>Sign Up</h1>
       <div className="input-boxes">
-        <label htmlFor="email">Email:</label>
-        <input onChange={(e)=> setEmail(e.target.value)} type="text" id="email" name="email"></input>
-        <label htmlFor="password">Password:</label>
-        <input type="password" onChange={(e) => setPassword(e.target.value)} id="password" name="password"></input>
-        <label htmlFor="confirm-password">Confirm Password:</label>
-        <input
+        <TextField
+          onChange={(e) => setEmail(e.target.value)}
+          id="signup-email"
+          label="Email"
+        />
+        <TextField
+          onChange={(e) => setPassword(e.target.value)}
+          id="signup-password"
+          label="Password"
           type="password"
-          id="confirm-password"
-          name="confirm-password"
+        />
+        <TextField
           onChange={(e) => setConfirmaPassword(e.target.value)}
-        ></input>
+          id="signup-confirm-password"
+          label="Confirm Password"
+          type="password"
+        />
       </div>
-      <button  onClick={signupFunction}>Submit</button>
+      <Button variant="contained" color="primary" onClick={signupFunction}>
+        Submit
+      </Button>
+      <Typography variant="subtitle2" component="p">
+        {error}
+      </Typography>
     </div>
   );
 }

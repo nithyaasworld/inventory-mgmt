@@ -17,19 +17,10 @@ export default function AddItem(){
             image: imageURLRef.current.value,
           }).then((addedData) => {
             console.log("successfully added to DB", addedData);
-            // let itemToAdd = { id: addedData.id, content: inputRef.current.value, completed: false };
-            // console.log({ itemToAdd });
-            // // dispatch(addTodo(itemToAdd));
-            // inputRef.current.value = '';
           }).catch((e) => {
             console.error('Not able to add data to DB.', e);
           })
     }
-
-  
-
-
-
     return (
         <div className="add-item-container">
             <label htmlFor="name" >Name: </label>
