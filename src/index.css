@@ -125,3 +125,8 @@
   justify-content: center;
   gap: 1em;
 }
+.add-item-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}

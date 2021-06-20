@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { databaseRef } from "./firebase-config";
+import TextField from "@material-ui/core/TextField";
+import Button from '@material-ui/core/Button';
 
 export default function AddItem({selectedCat}){
     let nameRef = useRef();
@@ -24,17 +26,12 @@ export default function AddItem({selectedCat}){
     }
     return (
         <div className="add-item-container">
-            <label htmlFor="name" >Name: </label>
-            <input ref={nameRef} type="text" placeholder="Enter the product name" id="name" name="name"></input>
-            <label htmlFor="description">Description: </label>
-            <input ref={descriptionRef} type="text" id="description" name="description"></input>
-            <label htmlFor="price">Price: </label>
-            <input ref={priceRef} type="number" id="price" name="price"></input>
-            <label htmlFor="quantity">Quantity: </label>
-            <input ref={quantityRef} type="number" id="quantity" name="quantity"></input>
-            <label htmlFor="image">Image URL: </label>
-            <input ref={imageURLRef} type="text" id="image" name="image"></input>
-            <button onClick={onSubmit}>Submit</button>
+            <TextField inputRef={nameRef} id="standard-basic" label="Product name" />
+            <TextField inputRef={descriptionRef} id="standard-basic" label="Description" />
+            <TextField inputRef={priceRef} type="number" id="standard-basic" label="Price" />
+            <TextField inputRef={quantityRef} type="number" id="standard-basic" label="Quantity" />
+            <TextField inputRef={imageURLRef} type="text" id="standard-basic" label="Image URL" />
+            <Button onClick={onSubmit} variant="contained" color="primary">Submit</Button>
         </div>
     )
 }
