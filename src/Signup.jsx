@@ -20,6 +20,7 @@ export default function SignUp() {
       .then((userCredential) => {
         let user = userCredential.user;
         console.log(user);
+        window.location = '/categories';
       })
       .catch((error) => {
         let errorCode = error.code;

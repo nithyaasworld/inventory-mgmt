@@ -42,6 +42,7 @@ export default function Category() {
             price: doc.data().price,
             quantity: doc.data().quantity,
             image: doc.data().image,
+            doc: doc,
           };
           mobileListCopy.push(item);
         });

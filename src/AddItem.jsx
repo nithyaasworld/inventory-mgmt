@@ -7,7 +7,7 @@ export default function AddItem(){
     let priceRef = useRef();
     let quantityRef = useRef();
     let imageURLRef = useRef();
-
+    
     const onSubmit = () => {
         databaseRef.collection("mobiles").add({
             name: nameRef.current.value,
@@ -17,6 +17,7 @@ export default function AddItem(){
             image: imageURLRef.current.value,
           }).then((addedData) => {
             console.log("successfully added to DB", addedData);
+            window.location = '/categories';
           }).catch((e) => {
             console.error('Not able to add data to DB.', e);
           })
