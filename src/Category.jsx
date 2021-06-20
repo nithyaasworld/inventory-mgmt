@@ -33,6 +33,7 @@ export default function Category() {
       .collection("mobiles")
       .get()
       .then((value) => {
+        let mobileListCopy = [];
         value.docs.forEach((doc) => {
           let item = {
             id: doc.id,
@@ -42,10 +43,9 @@ export default function Category() {
             quantity: doc.data().quantity,
             image: doc.data().image,
           };
-          let mobileListCopy = mobileList.slice(0);
           mobileListCopy.push(item);
-          setMobileList(mobileListCopy);
         });
+        setMobileList(mobileListCopy);
       })
       .catch((err) => console.log(err));
 
@@ -54,6 +54,7 @@ export default function Category() {
       .collection("laptops")
       .get()
       .then((value) => {
+        let laptopList= [];
         value.docs.forEach((doc) => {
           let item = {
             id: doc.id,
@@ -63,10 +64,9 @@ export default function Category() {
             quantity: doc.data().quantity,
             image: doc.data().image,
           };
-          let laptopListCopy = laptopList.slice(0);
-          laptopListCopy.push(item);
-          setLaptopList(laptopListCopy);
+          laptopList.push(item);
         });
+        setLaptopList(laptopList);
       })
       .catch((err) => console.log(err));
 
@@ -75,6 +75,7 @@ export default function Category() {
       .collection("appliances")
       .get()
       .then((value) => {
+        let applianceListCopy = [];
         value.docs.forEach((doc) => {
           let item = {
             id: doc.id,
@@ -84,10 +85,9 @@ export default function Category() {
             quantity: doc.data().quantity,
             image: doc.data().image,
           };
-          let applianceListCopy = applianceList.slice(0);
           applianceListCopy.push(item);
-          setApplianceList(applianceListCopy);
         });
+        setApplianceList(applianceListCopy);
       })
       .catch((err) => console.log(err));
   }, []);
