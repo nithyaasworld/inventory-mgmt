@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import Itemdisplay from "./Itemdisplay";
-import { databaseRef } from "./firebase-config";
-import { Link } from 'react-router-dom';
+import { databaseRef, firebaseAuth } from "./firebase-config";
+import { Link } from "react-router-dom";
 
-export default function Category({selectedCat, setSelectedCat}) {
+export default function Category({ selectedCat, setSelectedCat }) {
   let categories = ["Mobiles", "Laptops", "Appliances"];
   // let [selectedCat, setSelectedCat] = useState("Mobiles");
   let [mobileList, setMobileList] = useState([]);
@@ -19,15 +19,15 @@ export default function Category({selectedCat, setSelectedCat}) {
   //   }
   // }, [mobileList]);
 
-  useEffect(()=>{
-    if(selectedCat === "Mobiles"){
-        setCurrList(mobileList);
-    }else if(selectedCat === "Laptops"){
-        setCurrList(laptopList);
-    }else if(selectedCat === "Appliances"){
-        setCurrList(applianceList);
+  useEffect(() => {
+    if (selectedCat === "Mobiles") {
+      setCurrList(mobileList);
+    } else if (selectedCat === "Laptops") {
+      setCurrList(laptopList);
+    } else if (selectedCat === "Appliances") {
+      setCurrList(applianceList);
     }
-  },[mobileList, selectedCat]);
+  }, [mobileList, selectedCat]);
 
   useEffect(() => {
     //Getting Mobile List from DB
@@ -57,7 +57,7 @@ export default function Category({selectedCat, setSelectedCat}) {
       .collection("laptops")
       .get()
       .then((value) => {
-        let laptopList= [];
+        let laptopList = [];
         value.docs.forEach((doc) => {
           let item = {
             id: doc.id,
@@ -95,8 +95,13 @@ export default function Category({selectedCat, setSelectedCat}) {
       .catch((err) => console.log(err));
   }, []);
 
+  const logout = () => {
+    console.log("logout clicked");
+    firebaseAuth.signOut();
+  };
+
   return (
-      <div className="category-container">
+    <div className="category-container">
       <ul className="category-list">
         {categories.map((item) => (
           <li
@@ -108,7 +113,16 @@ export default function Category({selectedCat, setSelectedCat}) {
           </li>
         ))}
       </ul>
-      <Link className="add-an-item" to="/add-item"><button className="add-an-item-button">Add an item for this category</button></Link>
+      <div className="secondary-links">
+        <Link className="add-an-item" to="/add-item">
+          <button className="add-an-item-button">
+            Add an item for this category
+          </button>
+        </Link>
+        <Link className="logout-link" onClick={logout} to="/login" >
+          Logout
+        </Link>
+      </div>
       <Itemdisplay list={currList} catName={selectedCat.toLowerCase()} />
     </div>
   );
